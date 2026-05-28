@@ -1,6 +1,6 @@
 ---
-name: "claude-review"
-description: "Run Claude Code as an independent reviewer for the current git diff from Codex"
+name: "claude-only-review"
+description: "Run Claude Code as an independent reviewer, then report every finding with Codex comments"
 compatibility: "Requires a git repository and Claude Code CLI with subscription auth"
 metadata:
   author: "k-vasiliev"
@@ -24,7 +24,7 @@ conversation and pass that text instead.
 1. Run Claude review from the repository root:
 
    ```bash
-   CLAUDE_REVIEW_TASK='$ARGUMENTS' bash "<path-to-this-skill>/scripts/claude-review.sh" review
+   CLAUDE_REVIEW_TASK='$ARGUMENTS' bash "<path-to-this-skill>/../../scripts/claude-review.sh" review
    ```
 
    Replace `<path-to-this-skill>` with the directory containing this `SKILL.md`.
@@ -38,18 +38,18 @@ conversation and pass that text instead.
    current conversation. If the task contains shell quotes, escape them safely
    before running the command.
 
-2. Show Claude output to the user before taking any other action.
+2. Do not modify files.
 
-3. Address actionable review findings immediately unless the user explicitly
-   asked to only run review. Do not apply suggestions blindly: inspect the
-   relevant code yourself, make the smallest appropriate fixes, and preserve the
-   project constitution rules.
+3. Read Claude output and inspect only the code context needed to evaluate each
+   review point. Use read-only commands.
 
-4. After fixes, run the focused validation that is appropriate for the changed
-   code. If validation cannot be run, report that clearly.
+4. Send the user the review results. For every Claude finding, include a Codex
+   comment that states whether you agree, disagree, partially agree, or need
+   user clarification, with a concise reason and relevant file references. Do
+   not silently drop Claude findings. If Claude reports no findings, say so.
 
-5. Do not reinterpret Claude output into pass/fail status. Report the review
-   content and any follow-up fixes.
+5. Do not fix anything in this command. If the user asks to fix the findings,
+   tell them to run `claude-review-and-fix` or explicitly ask for fixes.
 
 ## Runtime
 
@@ -59,9 +59,8 @@ Use a 15 minute timeout before treating the run as stuck.
 
 ## Rules
 
-- Do not apply Claude suggestions automatically.
-- Do not run tests as part of Claude review itself. Codex may run focused
-  validation after applying review fixes.
+- Do not apply Claude suggestions.
+- Do not run tests.
 - Claude may use Bash only for read-only review inspection, such as reading the
   current git diff.
 - Claude must consider the original implementation task.
@@ -74,5 +73,5 @@ Use a 15 minute timeout before treating the run as stuck.
 To verify local prerequisites:
 
 ```bash
-bash "<path-to-this-skill>/scripts/claude-review.sh" setup
+bash "<path-to-this-skill>/../../scripts/claude-review.sh" setup
 ```

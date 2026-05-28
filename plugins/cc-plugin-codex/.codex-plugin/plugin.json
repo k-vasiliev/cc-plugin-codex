@@ -1,7 +1,7 @@
 {
   "name": "cc-plugin-codex",
-  "version": "0.1.0",
-  "description": "Run Claude Code as an independent reviewer for Codex-managed changes.",
+  "version": "0.2.0",
+  "description": "Run Claude Code reviews for Codex-managed changes, with separate review-only and review-and-fix workflows.",
   "author": {
     "name": "k-vasiliev",
     "url": "https://github.com/k-vasiliev"
@@ -11,13 +11,14 @@
     "codex",
     "claude",
     "review",
-    "code-review"
+    "code-review",
+    "fix"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "CC Plugin Codex",
     "shortDescription": "Ask Claude Code to review the current git diff.",
-    "longDescription": "CC Plugin Codex adds a Claude-backed review workflow for Codex. The bundled claude-review skill runs Claude Code in review-only mode against the current git diff, shows the findings, and then lets Codex address actionable issues.",
+    "longDescription": "CC Plugin Codex adds Claude-backed review workflows for Codex. The bundled claude-only-review skill reports Claude findings with Codex comments on each point, while claude-review-and-fix reviews the current git diff and lets Codex fix confirmed actionable issues.",
     "developerName": "k-vasiliev",
     "category": "Coding",
     "capabilities": [
@@ -25,7 +26,8 @@
       "Write"
     ],
     "defaultPrompt": [
-      "Run claude-review for the current diff."
+      "Run claude-only-review for the current diff.",
+      "Run claude-review-and-fix for the current diff."
     ],
     "brandColor": "#111827"
   }

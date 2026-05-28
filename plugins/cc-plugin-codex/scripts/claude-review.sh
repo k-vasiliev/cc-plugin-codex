@@ -4,8 +4,8 @@ set -euo pipefail
 usage() {
   cat >&2 <<'EOF'
 Usage:
-  bash <path-to-this-skill>/scripts/claude-review.sh setup
-  bash <path-to-this-skill>/scripts/claude-review.sh review
+  bash <path-to-plugin>/scripts/claude-review.sh setup
+  bash <path-to-plugin>/scripts/claude-review.sh review
 EOF
 }
 
@@ -70,7 +70,9 @@ Focus on:
 - missing tests, but do not run tests.
 
 Return a concise code review. Prioritize concrete bugs and acceptance risks first.
+Use a numbered list for findings. For each finding, include severity, affected file or line when possible, evidence, impact, and the smallest suggested direction.
 Include non-blocking suggestions only after higher-impact findings.
+If there are no findings, say exactly: No findings.
 
 Original user task:
 $original_task

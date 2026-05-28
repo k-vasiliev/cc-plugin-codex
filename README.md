@@ -2,9 +2,12 @@
 
 Codex marketplace repository with one plugin: `cc-plugin-codex`.
 
-The plugin exposes the `claude-review` skill. It runs Claude Code as an
-independent, read-only reviewer for the current git diff, shows the review
-output to the user, and lets Codex handle actionable findings after inspection.
+The plugin exposes two Claude Code review skills:
+
+- `claude-only-review` runs Claude Code as an independent, read-only reviewer
+  for the current git diff and reports every finding with a Codex comment.
+- `claude-review-and-fix` runs the same review, then lets Codex inspect and fix
+  confirmed actionable findings.
 
 ## Install
 
@@ -22,5 +25,5 @@ The skill requires:
 - Claude Code subscription authentication
 - a git repository as the current working directory
 
-After installing the plugin, ask Codex to use `claude-review` and run the
-skill setup check.
+After installing the plugin, ask Codex to use `claude-only-review` or
+`claude-review-and-fix` and run the skill setup check.
