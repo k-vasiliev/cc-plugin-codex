@@ -55,7 +55,9 @@ conversation and pass that text instead.
    own comments and explanations in the language used in the preceding
    conversation, unless the user explicitly requests another language. Do not
    write bare confirmations such as "agree" without explanation. When reporting
-   each finding, use 2-4 sentences that cover the evidence you checked, the
+   each finding, use 3-5 sentences. Start by describing the problem in your own
+   words: what behavior or contract is affected, why that can matter, and what
+   user or system impact it can have. Then cover the evidence you checked, the
    concrete risk or non-risk, whether you fixed it, and the validation or next
    step when applicable.
 
