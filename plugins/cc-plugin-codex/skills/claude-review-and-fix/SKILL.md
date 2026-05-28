@@ -53,14 +53,16 @@ conversation and pass that text instead.
 6. Do not reinterpret Claude output into pass/fail status. Report the review
    content, the fixes made, and any findings that were not fixed. Write your
    own comments and explanations in the language used in the preceding
-   conversation, unless the user explicitly requests another language. Do not
-   write bare confirmations such as "agree" without explanation. When reporting
-   each finding, use 3-5 sentences. Format each problem title as bold Markdown
-   text, preserving severity when Claude provides one. Start by describing the
-   problem in your own words: what behavior or contract is affected, why that
-   can matter, and what user or system impact it can have. Then cover the
-   evidence you checked, the concrete risk or non-risk, whether you fixed it,
-   and the validation or next step when applicable.
+   conversation, unless the user explicitly requests another language. When
+   reporting each finding, format the problem title as bold Markdown text,
+   preserving severity when Claude provides one. Then add a short verdict line
+   using `Codex: agree`, `Codex: partially agree`, `Codex: disagree`, or
+   `Codex: needs clarification`. Do not stop at that verdict: add 3-5 sentences
+   that start by describing the problem in your own words, including what
+   behavior or contract is affected, why that can matter, and what user or
+   system impact it can have. Then cover the evidence you checked, the concrete
+   risk or non-risk, whether you fixed it, and the validation or next step when
+   applicable.
 
 ## Runtime
 
