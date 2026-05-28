@@ -40,29 +40,33 @@ conversation and pass that text instead.
 
 2. Show Claude output to the user before taking any fixing action.
 
-3. Inspect every Claude finding yourself. Do not apply suggestions blindly:
-   confirm each issue against the code, make the smallest appropriate fixes for
-   confirmed actionable findings, and preserve the project constitution rules.
+3. Enter a read-only Codex assessment phase. Do not modify files in this phase.
+   Inspect every Claude finding yourself. For every finding, send the user a
+   Codex assessment before editing anything. Write your own comments and
+   explanations in the language used in the preceding conversation, unless the
+   user explicitly requests another language.
 
-4. Leave non-actionable, incorrect, or unclear findings unfixed. Report them
-   with a short explanation.
-
-5. After fixes, run the focused validation that is appropriate for the changed
-   code. If validation cannot be run, report that clearly.
-
-6. Do not reinterpret Claude output into pass/fail status. Report the review
-   content, the fixes made, and any findings that were not fixed. Write your
-   own comments and explanations in the language used in the preceding
-   conversation, unless the user explicitly requests another language. When
-   reporting each finding, format the problem title as bold Markdown text,
+4. In the Codex assessment, format each problem title as bold Markdown text,
    preserving severity when Claude provides one. Then add a short verdict line
    using `Codex: agree`, `Codex: partially agree`, `Codex: disagree`, or
    `Codex: needs clarification`. Do not stop at that verdict: add 3-5 sentences
    that start by describing the problem in your own words, including what
    behavior or contract is affected, why that can matter, and what user or
    system impact it can have. Then cover the evidence you checked, the concrete
-   risk or non-risk, whether you fixed it, and the validation or next step when
-   applicable.
+   risk or non-risk, whether the item should be fixed now, and the smallest next
+   step when applicable.
+
+5. Only after sending the Codex assessment to the user may you enter the fixing
+   phase. Do not apply suggestions blindly: make the smallest appropriate fixes
+   only for confirmed actionable findings, and preserve the project constitution
+   rules. Leave non-actionable, incorrect, or unclear findings unfixed.
+
+6. After fixes, run the focused validation that is appropriate for the changed
+   code. If validation cannot be run, report that clearly.
+
+7. Do not reinterpret Claude output into pass/fail status. In the final response,
+   report the fixes made, validation results, and any findings that were not
+   fixed.
 
 ## Runtime
 
