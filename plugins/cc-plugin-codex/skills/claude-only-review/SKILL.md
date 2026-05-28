@@ -38,12 +38,17 @@ conversation and pass that text instead.
    current conversation. If the task contains shell quotes, escape them safely
    before running the command.
 
-2. Do not modify files.
+2. The bundled review script must make Claude inspect the project's accepted
+   rules before reviewing the diff. Claude should consider `AGENTS.md`,
+   `CLAUDE.md`, README or CONTRIBUTING docs, relevant specs, and any nested
+   instructions that apply to changed files when present.
 
-3. Read Claude output and inspect only the code context needed to evaluate each
+3. Do not modify files.
+
+4. Read Claude output and inspect only the code context needed to evaluate each
    review point. Use read-only commands.
 
-4. Send the user the review results. For every Claude finding, include a Codex
+5. Send the user the review results. For every Claude finding, include a Codex
    comment that states whether you agree, disagree, partially agree, or need
    user clarification, with a concise reason and relevant file references. Do
    not silently drop Claude findings. For each finding, format the problem title
@@ -58,7 +63,7 @@ conversation and pass that text instead.
    language used in the preceding conversation, unless the user explicitly
    requests another language. If Claude reports no findings, say so.
 
-5. Do not fix anything in this command. If the user asks to fix the findings,
+6. Do not fix anything in this command. If the user asks to fix the findings,
    tell them to run `claude-review-and-fix` or explicitly ask for fixes.
 
 ## Runtime

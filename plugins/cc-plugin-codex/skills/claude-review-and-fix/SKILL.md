@@ -38,15 +38,20 @@ conversation and pass that text instead.
    current conversation. If the task contains shell quotes, escape them safely
    before running the command.
 
-2. Show Claude output to the user before taking any fixing action.
+2. The bundled review script must make Claude inspect the project's accepted
+   rules before reviewing the diff. Claude should consider `AGENTS.md`,
+   `CLAUDE.md`, README or CONTRIBUTING docs, relevant specs, and any nested
+   instructions that apply to changed files when present.
 
-3. Enter a read-only Codex assessment phase. Do not modify files in this phase.
+3. Show Claude output to the user before taking any fixing action.
+
+4. Enter a read-only Codex assessment phase. Do not modify files in this phase.
    Inspect every Claude finding yourself. For every finding, send the user a
    Codex assessment before editing anything. Write your own comments and
    explanations in the language used in the preceding conversation, unless the
    user explicitly requests another language.
 
-4. In the Codex assessment, format each problem title as bold Markdown text,
+5. In the Codex assessment, format each problem title as bold Markdown text,
    preserving severity when Claude provides one. Then add a short verdict line
    using `Codex: agree`, `Codex: partially agree`, `Codex: disagree`, or
    `Codex: needs clarification`. Do not stop at that verdict: add 3-5 sentences
@@ -56,15 +61,15 @@ conversation and pass that text instead.
    risk or non-risk, whether the item should be fixed now, and the smallest next
    step when applicable.
 
-5. Only after sending the Codex assessment to the user may you enter the fixing
+6. Only after sending the Codex assessment to the user may you enter the fixing
    phase. Do not apply suggestions blindly: make the smallest appropriate fixes
    only for confirmed actionable findings, and preserve the project constitution
    rules. Leave non-actionable, incorrect, or unclear findings unfixed.
 
-6. After fixes, run the focused validation that is appropriate for the changed
+7. After fixes, run the focused validation that is appropriate for the changed
    code. If validation cannot be run, report that clearly.
 
-7. Do not reinterpret Claude output into pass/fail status. In the final response,
+8. Do not reinterpret Claude output into pass/fail status. In the final response,
    report the fixes made, validation results, and any findings that were not
    fixed.
 
