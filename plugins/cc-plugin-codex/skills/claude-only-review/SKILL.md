@@ -48,13 +48,14 @@ conversation and pass that text instead.
    user clarification, with a concise reason and relevant file references. Do
    not silently drop Claude findings. Do not write bare confirmations such as
    "agree" without explanation. For each Codex comment, use 3-5 sentences.
-   Start by describing the problem in your own words: what behavior or contract
-   is affected, why that can matter, and what user or system impact it can have.
-   Then cover the evidence you checked, the concrete risk or non-risk, whether
-   the item should be fixed now, and the smallest next step when applicable.
-   Write Codex comments in the language used in the preceding conversation,
-   unless the user explicitly requests another language. If Claude reports no
-   findings, say so.
+   Format each problem title as bold Markdown text, preserving severity when
+   Claude provides one. Start by describing the problem in your own words: what
+   behavior or contract is affected, why that can matter, and what user or
+   system impact it can have. Then cover the evidence you checked, the concrete
+   risk or non-risk, whether the item should be fixed now, and the smallest next
+   step when applicable. Write Codex comments in the language used in the
+   preceding conversation, unless the user explicitly requests another language.
+   If Claude reports no findings, say so.
 
 5. Do not fix anything in this command. If the user asks to fix the findings,
    tell them to run `claude-review-and-fix` or explicitly ask for fixes.
