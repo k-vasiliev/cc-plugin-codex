@@ -53,7 +53,11 @@ conversation and pass that text instead.
 6. Do not reinterpret Claude output into pass/fail status. Report the review
    content, the fixes made, and any findings that were not fixed. Write your
    own comments and explanations in the language used in the preceding
-   conversation, unless the user explicitly requests another language.
+   conversation, unless the user explicitly requests another language. Do not
+   write bare confirmations such as "agree" without explanation. When reporting
+   each finding, use 2-4 sentences that cover the evidence you checked, the
+   concrete risk or non-risk, whether you fixed it, and the validation or next
+   step when applicable.
 
 ## Runtime
 

@@ -46,9 +46,13 @@ conversation and pass that text instead.
 4. Send the user the review results. For every Claude finding, include a Codex
    comment that states whether you agree, disagree, partially agree, or need
    user clarification, with a concise reason and relevant file references. Do
-   not silently drop Claude findings. Write Codex comments in the language used
-   in the preceding conversation, unless the user explicitly requests another
-   language. If Claude reports no findings, say so.
+   not silently drop Claude findings. Do not write bare confirmations such as
+   "agree" without explanation. For each Codex comment, use 2-4 sentences that
+   cover the evidence you checked, the concrete risk or non-risk, whether the
+   item should be fixed now, and the smallest next step when applicable. Write
+   Codex comments in the language used in the preceding conversation, unless
+   the user explicitly requests another language. If Claude reports no findings,
+   say so.
 
 5. Do not fix anything in this command. If the user asks to fix the findings,
    tell them to run `claude-review-and-fix` or explicitly ask for fixes.
