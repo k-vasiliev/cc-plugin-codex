@@ -51,7 +51,9 @@ conversation and pass that text instead.
    code. If validation cannot be run, report that clearly.
 
 6. Do not reinterpret Claude output into pass/fail status. Report the review
-   content, the fixes made, and any findings that were not fixed.
+   content, the fixes made, and any findings that were not fixed. Write your
+   own comments and explanations in the language used in the preceding
+   conversation, unless the user explicitly requests another language.
 
 ## Runtime
 
