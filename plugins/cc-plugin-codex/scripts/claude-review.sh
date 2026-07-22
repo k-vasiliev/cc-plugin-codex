@@ -19,13 +19,19 @@ require_command() {
 }
 
 run_claude_subscription() {
+  # Claude settings can re-introduce provider URLs and auth tokens after the
+  # process environment is cleared. Review prompts inspect project rules
+  # explicitly, so disable user/project/local settings for deterministic
+  # first-party subscription authentication.
   env \
     -u ANTHROPIC_API_KEY \
     -u ANTHROPIC_AUTH_TOKEN \
+    -u ANTHROPIC_BASE_URL \
     -u CLAUDE_CODE_USE_BEDROCK \
     -u CLAUDE_CODE_USE_VERTEX \
     -u CLAUDE_CODE_USE_FOUNDRY \
-    claude "$@"
+    -u CLAUDE_CODE_SIMPLE \
+    claude --setting-sources "" "$@"
 }
 
 ensure_git_repo() {

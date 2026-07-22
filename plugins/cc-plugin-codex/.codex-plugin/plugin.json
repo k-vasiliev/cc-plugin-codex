@@ -1,6 +1,6 @@
 {
   "name": "cc-plugin-codex",
-  "version": "0.2.7",
+  "version": "0.2.7+codex.20260722093944",
   "description": "Run Claude Code reviews for Codex-managed changes, with separate review-only and review-and-fix workflows.",
   "author": {
     "name": "k-vasiliev",
